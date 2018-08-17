@@ -603,6 +603,7 @@ public class RedisUtil {
     /**
      * 将list放入缓存
      *
+     *
      * @param key   键
      * @param value 值
      * @param time  时间(秒)
