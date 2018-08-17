@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.log4j:Logger:unknown">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/org/log4j/Logger/unknown/Logger-unknown.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.m2/repository/org/log4j/Logger/unknown/Logger-unknown-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.m2/repository/org/log4j/Logger/unknown/Logger-unknown-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
