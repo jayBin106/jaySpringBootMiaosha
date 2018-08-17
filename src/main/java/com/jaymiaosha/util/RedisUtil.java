@@ -620,6 +620,7 @@ public class RedisUtil {
     }
 
     /**
+     * 嘿嘿
      * 将list放入缓存
      *
      * @param key   键
