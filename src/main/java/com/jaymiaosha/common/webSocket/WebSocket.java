@@ -2,7 +2,6 @@ package com.jaymiaosha.common.webSocket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.OnClose;
@@ -55,7 +54,7 @@ public class WebSocket {
         }
     }
 
-    @Scheduled(cron = "0/5 * * * * ? ")
+//    @Scheduled(cron = "0/5 * * * * ? ")
     private void timeSendMessage() {
         log.info("时间：", System.currentTimeMillis());
         sendMessage("在干嘛呢？");
