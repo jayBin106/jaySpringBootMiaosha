@@ -1,8 +1,9 @@
 package com.jaymiaosha.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MiaoshaUser {
+public class MiaoshaUser implements Serializable {
     private Long id;
 
     private String nickname;
@@ -18,6 +19,10 @@ public class MiaoshaUser {
     private Date lastlogindate;
 
     private Integer logincount;
+
+    private String openid;
+
+    private String unionid;
 
     public Long getId() {
         return id;
@@ -81,5 +86,21 @@ public class MiaoshaUser {
 
     public void setLogincount(Integer logincount) {
         this.logincount = logincount;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid == null ? null : openid.trim();
+    }
+
+    public String getUnionid() {
+        return unionid;
+    }
+
+    public void setUnionid(String unionid) {
+        this.unionid = unionid == null ? null : unionid.trim();
     }
 }

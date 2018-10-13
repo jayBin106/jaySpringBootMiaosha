@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>秒杀失败</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div>国家：<p th:text="${user.country}"></p></div>
+<div>省份：<p th:text="${user.province}"></p></div>
+<div>城市：<p th:text="${user.city}"></p></div>
+<div>openid：<p th:text="${user.openid}"></p></div>
+<div>性别：<p th:text="${user.sex}"></p></div>
+<div>昵称：<p th:text="${user.nickname}"></p></div>
+<div>头像：<img th:src="@{${user.headimgurl}}" width="100" height="100"/></div>
+</body>
+</html>

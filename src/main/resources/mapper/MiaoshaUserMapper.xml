@@ -10,6 +10,8 @@
     <result column="registerDate" property="registerdate" jdbcType="DATE" />
     <result column="lastLoginDate" property="lastlogindate" jdbcType="DATE" />
     <result column="loginCount" property="logincount" jdbcType="INTEGER" />
+    <result column="openId" property="openid" jdbcType="VARCHAR" />
+    <result column="unionId" property="unionid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, nickname, password, salt, head, registerDate, lastLoginDate, loginCount
+    id, nickname, password, salt, head, registerDate, lastLoginDate, loginCount, openId, 
+    unionId
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jaymiaosha.pojo.MiaoshaUserExample" >
     select
@@ -105,10 +108,12 @@
   <insert id="insert" parameterType="com.jaymiaosha.pojo.MiaoshaUser" >
     insert into miaosha_user (id, nickname, password, 
       salt, head, registerDate, 
-      lastLoginDate, loginCount)
+      lastLoginDate, loginCount, openId, 
+      unionId)
     values (#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{salt,jdbcType=VARCHAR}, #{head,jdbcType=VARCHAR}, #{registerdate,jdbcType=DATE}, 
-      #{lastlogindate,jdbcType=DATE}, #{logincount,jdbcType=INTEGER})
+      #{lastlogindate,jdbcType=DATE}, #{logincount,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, 
+      #{unionid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jaymiaosha.pojo.MiaoshaUser" >
     insert into miaosha_user
@@ -137,6 +142,12 @@
       <if test="logincount != null" >
         loginCount,
       </if>
+      <if test="openid != null" >
+        openId,
+      </if>
+      <if test="unionid != null" >
+        unionId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +173,12 @@
       </if>
       <if test="logincount != null" >
         #{logincount,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        #{unionid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +215,12 @@
       <if test="record.logincount != null" >
         loginCount = #{record.logincount,jdbcType=INTEGER},
       </if>
+      <if test="record.openid != null" >
+        openId = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unionid != null" >
+        unionId = #{record.unionid,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +235,9 @@
       head = #{record.head,jdbcType=VARCHAR},
       registerDate = #{record.registerdate,jdbcType=DATE},
       lastLoginDate = #{record.lastlogindate,jdbcType=DATE},
-      loginCount = #{record.logincount,jdbcType=INTEGER}
+      loginCount = #{record.logincount,jdbcType=INTEGER},
+      openId = #{record.openid,jdbcType=VARCHAR},
+      unionId = #{record.unionid,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +266,12 @@
       <if test="logincount != null" >
         loginCount = #{logincount,jdbcType=INTEGER},
       </if>
+      <if test="openid != null" >
+        openId = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        unionId = #{unionid,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -252,7 +283,9 @@
       head = #{head,jdbcType=VARCHAR},
       registerDate = #{registerdate,jdbcType=DATE},
       lastLoginDate = #{lastlogindate,jdbcType=DATE},
-      loginCount = #{logincount,jdbcType=INTEGER}
+      loginCount = #{logincount,jdbcType=INTEGER},
+      openId = #{openid,jdbcType=VARCHAR},
+      unionId = #{unionid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

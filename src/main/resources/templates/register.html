@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<form id="personRegForm" action="/user/register" method="post">
+    用户名：<input type="text" name="id">
+    密码：<input type="password" name="password">
+    <input type="hidden" name="openid" th:value="${user.openid}">
+    <input type="hidden" name="nickname" th:value="${user.nickname}">
+    <button type="submit">提交</button>
+</form>
+</body>
+<script>
+    function submit() {
+        $.post("/user/register", $("#personRegForm").serialize(), function (data) {
+            if (data.status == 200) {
+                alert('用户注册成功，请登录！');
+            } else {
+                alert("注册失败！");
+            }
+        });
+    }
+</script>
+</html>
