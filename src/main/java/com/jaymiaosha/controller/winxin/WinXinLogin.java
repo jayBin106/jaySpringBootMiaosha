@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * Created by lenovo on 2018/10/13.
+ * 微信网站授权登录--用的是微信测试帐号
  */
 @Controller
 @RequestMapping("/weixin")

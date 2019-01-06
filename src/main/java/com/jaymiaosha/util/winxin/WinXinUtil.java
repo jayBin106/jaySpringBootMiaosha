@@ -15,7 +15,7 @@ import java.io.IOException;
  * Created by lenovo on 2018/10/11.
  */
 public class WinXinUtil {
-    public static final String SERVICE_URL = "http://ixj7ig.natappfree.cc";
+    public static final String SERVICE_URL = "http://e7jbst.natappfree.cc";
     public static final String appId = "wx4279d2627167c973";
     public static final String appsecret = "2098439bf431335ae2bdc71211f13856";
     public static final String EncodingAESKey = "cfcVbGFRER2K5lB4LdTXuCPb03qVm5NK03ifWDDyEcX";
