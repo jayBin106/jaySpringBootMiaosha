@@ -108,11 +108,13 @@
                     doMiaosha(path);
                 } else {
                     layer.msg(data.msg);
+                    refreshVerifyCode();
                 }
             },
-            error: function () {
-                layer.msg("客户端请求有误");
-            }
+        error: function () {
+            layer.msg("客户端请求有误");
+            refreshVerifyCode();
+        }
         });
     }
 

@@ -38,7 +38,7 @@ public class RoncooJmsComponent {
     }
 
     @JmsListener(destination = "roncoo.queue")
-    public Result receiveQueue(String msg) {
+    public void receiveQueue(String msg) {
         MiaoshaMessage miaoshaMessage = RedisUtil.stringToBean(msg, MiaoshaMessage.class);
         long goodsId = miaoshaMessage.getGoodsId();
         MiaoshaUser user = miaoshaMessage.getUser();
@@ -51,18 +51,17 @@ public class RoncooJmsComponent {
             goodsVo = goods.get(0);
             Integer stockCount = goodsVo.getStockCount();
             if (stockCount <= 0) {
-                return Result.success(CodeMsg.MIAOSHA_SCOUNT);
+                return;
             }
         }
         //判断是否已经秒杀到
         MiaoshaOrder miaoshaOrder = miaoShaOrderService.getMiaoshaOrderByUserIdGoodsId(user.getId(), goodsId);
         if (miaoshaOrder != null) {
-            return Result.error(CodeMsg.REPEATE_MIAOSHA);
+            return;
         }
         //没有则开始下订单写入秒杀订单
         miaoShaOrderService.startMiaoshaOrder(user, goodsVo);
         System.out.println("接受到：" + miaoshaMessage.getGoodsId());
-        return Result.success(CodeMsg.SUCCESS);
     }
 
 }

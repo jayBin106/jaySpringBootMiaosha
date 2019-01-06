@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class MiaoShaController implements InitializingBean {
         List<GoodsVo> goodsVos = goodsService.selectGoodesVo(new HashMap());
         if (goodsVos != null && goodsVos.size() != 0) {
             for (GoodsVo goodsVo : goodsVos) {
-                redisUtil.set(MiaoShaUserKey.getMiaoshaGoodsStock, goodsVo.getId() + "", goodsVo.getStockCount() + "");
+                redisUtil.set(MiaoShaUserKey.getMiaoshaGoodsStock.getPrefix() + goodsVo.getId(), goodsVo.getStockCount() + "");
                 localOverMap.put(goodsVo.getId(), false);
             }
         }
@@ -72,12 +73,12 @@ public class MiaoShaController implements InitializingBean {
      * @param miaoshaUser
      * @param goodsId
      * @param verifyCode
-     * @return
+     * @return verifyCode(MiaoshaUser user, HttpServletResponse response, HttpSession httpSession, @ RequestParam ( value = " goodsId ") Integer goodsId, @RequestParam(value = "timestamp") Long timestamp) {
      */
     @AccessLimit(seconds = 5, maxCount = 5, needLogin = true)
     @ResponseBody
     @RequestMapping("/path")
-    public Result<String> get(HttpServletRequest request, MiaoshaUser miaoshaUser, @RequestParam(value = "goodsId") Integer goodsId, @RequestParam(value = "verifyCode") String verifyCode) {
+    public Result<String> get(HttpServletResponse response, HttpSession httpSession, MiaoshaUser miaoshaUser, @RequestParam(value = "goodsId") Integer goodsId, @RequestParam(value = "verifyCode") String verifyCode) {
         if (miaoshaUser == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
