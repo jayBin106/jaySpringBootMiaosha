@@ -1,5 +1,6 @@
 package com.jaymiaosha.controller;
 
+import com.jaymiaosha.common.access.AccessLimit;
 import com.jaymiaosha.pojo.MiaoshaUser;
 import com.jaymiaosha.pojoVo.GoodsVo;
 import com.jaymiaosha.result.CodeMsg;
@@ -46,6 +47,7 @@ public class GoodsController {
      * @param goodsId
      * @return
      */
+    @AccessLimit(seconds = 5, maxCount = 5, needLogin = true)   //接口访问限流
     @RequestMapping("/goods_detail/{goodsId}")
     @ResponseBody
     public Result<ModelMap> goods_detail(MiaoshaUser miaoshaUser, ModelMap modelMap, @PathVariable(value = "goodsId") Integer goodsId) {

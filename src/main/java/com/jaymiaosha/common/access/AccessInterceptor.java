@@ -36,6 +36,7 @@ public class AccessInterceptor implements HandlerInterceptor {
             MiaoshaUser user = getUser(request);
             UserContext.setUser(user);
             HandlerMethod handler1 = (HandlerMethod) handler;
+            //接口访问限流
             AccessLimit accessLimit = handler1.getMethodAnnotation(AccessLimit.class);
             if (accessLimit == null) {
                 return true;
@@ -47,7 +48,7 @@ public class AccessInterceptor implements HandlerInterceptor {
             if (b) {
                 MiaoshaUser user1 = UserContext.getUser();
                 if (user1 == null) {
-                    render(response,CodeMsg.SESSION_ERROR);
+                    render(response, CodeMsg.SESSION_ERROR);
                     return false;
                 }
             }
@@ -64,7 +65,7 @@ public class AccessInterceptor implements HandlerInterceptor {
             } else if (count < maxCount) {
                 redisUtil.increment(realUrlKey, 1);
             } else {
-                render(response,CodeMsg.ACCESS_LIMIT_REACHED);
+                render(response, CodeMsg.ACCESS_LIMIT_REACHED);
                 return false;
             }
         }
