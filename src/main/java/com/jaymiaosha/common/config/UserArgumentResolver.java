@@ -15,6 +15,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  */
 @Service
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
+    //用于判定是否需要处理该参数分解，返回true为需要，并会去调用下面的方法resolveArgument。
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
         Class<?> parameterType = methodParameter.getParameterType();
@@ -22,6 +23,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         return equals;
     }
 
+    //真正用于处理参数分解的方法，返回的Object就是controller方法上的形参对象。
     @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest webRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
         MiaoshaUser user = UserContext.getUser();
